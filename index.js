@@ -43,7 +43,7 @@ const db = require('./config/keys').mongoURI;
 
 async function start() {
   try {
-    mongoose
+    await mongoose
       .connect(db, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
