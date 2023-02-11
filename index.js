@@ -38,16 +38,23 @@ app.use(bodyParser.json());
 const db = require('./config/keys').mongoURI;
 
 // Connect to MongoDB
-mongoose
-  .connect(db, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-  })
-  .then(() => console.log('MongoDB Connected'))
-  .catch((err) => console.log(err));
 
 // Passport middleware
+
+async function start() {
+  try {
+    mongoose
+      .connect(db, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+      })
+      .then(() => console.log('MongoDB Connected'));
+  } catch (error) {
+    console.log(error);
+  }
+}
+start();
 
 app.use(passport.initialize());
 
